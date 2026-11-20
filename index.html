@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Elektromagnetisme: dari arus listrik sampai cahaya</title>
+  <meta name="description" content="Alur elektromagnetisme dari percobaan Oersted sampai gelombang elektromagnetik, lengkap dengan kalkulator panjang gelombang dan kaitannya dengan sains data.">
+  <meta name="theme-color" content="#070b18">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script defer src="js/data.js"></script>
+  <script defer src="js/physics.js"></script>
+  <script defer src="js/scenes.js"></script>
+  <script defer src="js/fullscreen.js"></script>
+  <script defer src="js/wave.js"></script>
+  <script defer src="js/spectrum.js"></script>
+  <script defer src="js/carousel.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+  <header class="site-header">
+    <a class="brand" href="#beranda" aria-label="Elektromagnetisme, kembali ke awal">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#27365f"/><path d="M4 16c3-9 6-9 8 0s5 9 8 0 5-9 8 0" fill="none" stroke="#efeadb" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <span>Elektromagnetisme</span>
+    </a>
+    <nav class="site-nav" aria-label="Bagian halaman">
+      <ul>
+        <li><a href="#topik">Topik</a></li>
+        <li><a href="#maxwell">Maxwell</a></li>
+        <li><a href="#gelombang">Gelombang</a></li>
+        <li><a href="#spektrum">Spektrum</a></li>
+        <li><a href="#sains-data">Sains data</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="btn btn--outline" id="fs-toggle" aria-pressed="false" hidden>
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"></path></svg><span id="fs-label">Layar penuh</span>
+    </button>
+  </header>
+
+  <main id="konten">
+
+    <!-- 1. HERO -->
+    <section class="scene hero is-active" id="beranda" data-title="Beranda" aria-labelledby="h-beranda">
+      <div class="hero__bg"><img src="assets/img/hero-aurora.jpg" alt="" width="960" height="600" fetchpriority="high"></div>
+      <div class="scene__inner">
+        <div class="hero__text">
+          <p class="badge-line reveal">Fisika Dasar &middot; Sains Data</p>
+          <h1 class="h1 reveal" id="h-beranda">Dari arus listrik sampai <em>cahaya</em></h1>
+          <p class="lead reveal">Satu alur yang dimulai dari Oersted: arus menghasilkan magnet, magnet yang berubah menghasilkan listrik, dan keduanya bersama membentuk gelombang yang kita sebut cahaya.</p>
+          <div class="actions reveal">
+            <a class="btn btn--primary" href="#topik">Mulai dari awal</a>
+            <a class="btn btn--outline" href="#spektrum">Hitung panjang gelombang</a>
+          </div>
+          <p class="key-hint reveal"><kbd>↓</kbd> <span>pindah bagian</span> <kbd>F</kbd> <span>layar penuh</span></p>
+        </div>
+      </div>
+      <div class="partners">
+        <p class="partners__label">Berawal dari empat ilmuwan</p>
+        <ul>
+          <li>Ørsted<span>1820</span></li>
+          <li>Faraday<span>1831</span></li>
+          <li>Maxwell<span>1865</span></li>
+          <li>Hertz<span>1887</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. TOPIK (fitur) -->
+    <section class="scene scene--alt" id="topik" data-title="Topik" aria-labelledby="h-topik">
+      <div class="scene__inner">
+        <header class="scene__head reveal">
+          <p class="eyebrow">Empat ide dasar</p>
+          <h2 class="h2" id="h-topik">Dari magnet batang sampai <em>generator</em></h2>
+        </header>
+        <div class="bento reveal">
+          <article class="card-photo">
+            <img src="assets/img/topik-kemagnetan.jpg" alt="Serbuk besi membentuk garis medan di sekitar magnet batang" width="960" height="600" loading="lazy" decoding="async">
+            <h3>Kemagnetan</h3>
+            <p>Kutub N dan S tidak bisa dipisahkan. Medan magnet B diukur dalam tesla, dan Bumi sendiri adalah magnet dengan medan sekitar 50 μT.</p>
+          </article>
+          <article class="card-photo">
+            <img src="assets/img/topik-arus.jpg" alt="Ilustrasi percobaan Oersted: jarum kompas di dekat kawat berarus" width="944" height="590" loading="lazy" decoding="async">
+            <h3>Medan magnet oleh arus</h3>
+            <p class="formula">B = μ<sub>0</sub>I / 2πr <small>kawat lurus panjang</small></p>
+            <p>Oersted (1820): arus listrik menghasilkan medan magnet.</p>
+          </article>
+          <article class="card-photo">
+            <img src="assets/img/topik-lorentz.jpg" alt="Motor listrik yang dipotong sehingga bagian dalamnya terlihat" width="960" height="600" loading="lazy" decoding="async">
+            <h3>Gaya Lorentz</h3>
+            <p class="formula">F = qvB sin θ <small>membelokkan muatan, tidak melakukan usaha</small></p>
+            <p>Dasar motor listrik, spektrometer massa, dan aurora.</p>
+          </article>
+          <article class="card-photo">
+            <img src="assets/img/topik-induksi.jpg" alt="Rotor generator pembangkit listrik tenaga air" width="960" height="600" loading="lazy" decoding="async">
+            <h3>Induksi elektromagnetik</h3>
+            <p class="formula">ε = −N dΦ/dt <small>Faraday, dengan arah arus dari hukum Lenz</small></p>
+            <p>Perubahan fluks menimbulkan GGL: generator, transformator, kompor induksi.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MAXWELL (kenapa) -->
+    <section class="scene" id="maxwell" data-title="Maxwell" aria-labelledby="h-maxwell">
+      <div class="scene__inner">
+        <header class="scene__head reveal">
+          <p class="eyebrow">Persamaan Maxwell</p>
+          <h2 class="h2" id="h-maxwell">Empat persamaan, satu <em>kesimpulan besar</em></h2>
+        </header>
+        <div class="maxwell-grid reveal">
+          <div class="grid-2">
+            <article class="card"><span class="card__num">01</span><h3>Gauss (listrik)</h3><p>Muatan adalah sumber medan listrik.</p></article>
+            <article class="card"><span class="card__num">02</span><h3>Gauss (magnet)</h3><p>Tidak ada monopol. Garis medan magnet selalu tertutup.</p></article>
+            <article class="card"><span class="card__num">03</span><h3>Faraday</h3><p>Medan magnet yang berubah menghasilkan medan listrik.</p></article>
+            <article class="card"><span class="card__num">04</span><h3>Ampere–Maxwell</h3><p>Arus dan medan listrik yang berubah menghasilkan medan magnet.</p></article>
+          </div>
+          <aside class="callout" aria-label="Kesimpulan Maxwell">
+            <div>
+              <p class="eyebrow">Arus pergeseran</p>
+              <p>Maxwell menambahkan arus pergeseran pada persamaan keempat. Medan listrik dan medan magnet jadi bisa saling memicu dan merambat sebagai gelombang.</p>
+            </div>
+            <p class="formula">c = 1/√(μ<sub>0</sub>ε<sub>0</sub>)<span class="formula__sub">≈ 3 × 10<sup>8</sup> m/s</span><small>sama dengan kecepatan cahaya. Hertz membuktikannya pada 1887.</small></p>
+            <a class="btn btn--primary" href="#gelombang">Lihat gelombangnya</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. GELOMBANG -->
+    <section class="scene scene--alt" id="gelombang" data-title="Gelombang" aria-labelledby="h-gelombang">
+      <div class="scene__inner split">
+        <div class="reveal">
+          <p class="eyebrow">Gelombang elektromagnetik</p>
+          <h2 class="h2" id="h-gelombang">Cahaya adalah gelombang <em>listrik dan magnet</em></h2>
+          <ul class="facts">
+            <li><strong>E ⊥ B ⊥ arah rambat</strong><span>Gelombang transversal, medan listrik dan magnet sefase.</span></li>
+            <li><strong>Tanpa medium</strong><span>Merambat di vakum dengan kecepatan c.</span></li>
+            <li><strong>c = λf dan E = hf</strong><span>Wi-Fi 2,4 GHz punya λ ≈ 12,5 cm. Radio FM 100 MHz punya λ = 3 m.</span></li>
+          </ul>
+        </div>
+        <figure class="wave-card reveal">
+          <canvas id="wave-canvas" role="img" aria-label="Animasi gelombang elektromagnetik: medan listrik E vertikal dan medan magnet B tegak lurus terhadapnya, merambat ke kanan."></canvas>
+          <figcaption class="wave-legend">
+            <span class="e"><i></i>Medan listrik E</span>
+            <span class="b"><i></i>Medan magnet B</span>
+            <button type="button" class="chip" id="wave-toggle" aria-pressed="false">Jeda animasi</button>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 5. SPEKTRUM -->
+    <section class="scene" id="spektrum" data-title="Spektrum" aria-labelledby="h-spektrum">
+      <div class="scene__inner">
+        <header class="scene__head reveal">
+          <p class="eyebrow">Spektrum elektromagnetik</p>
+          <h2 class="h2" id="h-spektrum">Radio, Wi-Fi, cahaya, dan <span class="nowrap">sinar-X</span> adalah <em>gelombang yang sama</em></h2>
+        </header>
+        <div class="reveal">
+          <div class="spectrum-bar" id="spectrum-bar" role="group" aria-label="Pilih jenis gelombang"></div>
+          <noscript><p class="lead">Aktifkan JavaScript untuk memakai spektrum interaktif dan kalkulator.</p></noscript>
+          <div class="axis" aria-hidden="true"><span>Frekuensi rendah</span><span class="axis__line"></span><span>Frekuensi tinggi, energi besar</span></div>
+          <div class="spectrum-lower">
+            <section class="panel" aria-labelledby="h-detail" aria-live="polite">
+              <h3 id="h-detail">Pilih satu jenis gelombang</h3>
+              <p class="detail-range" id="detail-range"></p>
+              <p id="detail-examples">Klik salah satu blok warna di atas untuk melihat rentang panjang gelombang dan contohnya.</p>
+              <p class="detail-note" id="detail-note" hidden></p>
+            </section>
+            <section class="panel" aria-labelledby="h-calc">
+              <h3 id="h-calc">Dari frekuensi ke panjang gelombang</h3>
+              <form id="freq-form" novalidate>
+                <label class="field-label" for="freq-input">Frekuensi</label>
+                <div class="calc-row">
+                  <input id="freq-input" name="frekuensi" type="text" inputmode="decimal" autocomplete="off" placeholder="mis. 2,4" aria-describedby="calc-error" value="2,4">
+                  <select id="freq-unit" name="satuan" aria-label="Satuan frekuensi">
+                    <option>Hz</option><option>kHz</option><option>MHz</option><option selected>GHz</option><option>THz</option>
+                  </select>
+                  <button type="submit" class="btn btn--primary">Hitung</button>
+                </div>
+                <p class="calc-error" id="calc-error" role="alert"></p>
+                <div class="presets" aria-label="Contoh frekuensi">
+                  <button type="button" class="chip" data-freq="100" data-unit="MHz">Radio FM</button>
+                  <button type="button" class="chip" data-freq="2,4" data-unit="GHz">Wi-Fi</button>
+                  <button type="button" class="chip" data-freq="540" data-unit="THz">Cahaya hijau</button>
+                  <button type="button" class="chip" data-freq="3e18" data-unit="Hz">Sinar-X</button>
+                </div>
+                <dl class="results">
+                  <dt>Panjang gelombang λ = c/f</dt><dd id="res-lambda">–</dd>
+                  <dt>Energi foton E = hf</dt><dd id="res-energy">–</dd>
+                  <dt>Jenis</dt><dd id="res-band">–</dd>
+                </dl>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SAINS DATA (kenapa kami) -->
+    <section class="scene scene--alt" id="sains-data" data-title="Sains data" aria-labelledby="h-sains">
+      <div class="scene__inner">
+        <header class="scene__head reveal">
+          <p class="eyebrow">Kaitan dengan sains data</p>
+          <h2 class="h2" id="h-sains">Semua ini ujungnya jadi <em>data</em></h2>
+        </header>
+        <div class="grid-3 reveal">
+          <article class="card"><span class="card__icon"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M502.60969,310.04206l-96.70393,96.71625a31.88151,31.88151,0,0,1-45.00765,0L280.572,326.34115l-9.89231,9.90759a190.56343,190.56343,0,0,1-5.40716,168.52287c-4.50077,8.50115-16.39342,9.59505-23.20707,2.79725L134.54715,400.05428l-17.7999,17.79929c.70324,2.60972,1.60965,5.00067,1.60965,7.79793a32.00544,32.00544,0,1,1-32.00544-32.00434c2.79735,0,5.18838.90637,7.7982,1.60959l17.7999-17.79929L4.43129,269.94287c-6.798-6.81342-5.70409-18.6119,2.79735-23.20627a190.58161,190.58161,0,0,1,168.52864-5.407l9.79854-9.79821-80.31053-80.41716a32.002,32.002,0,0,1,0-45.09987L201.96474,9.29814A31.62639,31.62639,0,0,1,224.46868,0a31.99951,31.99951,0,0,1,22.59759,9.29814l80.32615,80.30777,47.805-47.89713a33.6075,33.6075,0,0,1,47.50808,0l47.50807,47.50645a33.63308,33.63308,0,0,1,0,47.50644l-47.805,47.89713L502.71908,265.036A31.78938,31.78938,0,0,1,502.60969,310.04206ZM219.56159,197.433l73.82505-73.82252-68.918-68.9-73.80942,73.80689Zm237.74352,90.106-68.90233-68.9156-73.825,73.82252,68.918,68.9Z"></path></svg></span><h3>Citra satelit</h3><p>Band cahaya tampak dan inframerah dipakai untuk analisis tanaman dan cuaca.</p></article>
+          <article class="card"><span class="card__icon"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M416 48v416c0 26.51-21.49 48-48 48H144c-26.51 0-48-21.49-48-48V48c0-26.51 21.49-48 48-48h224c26.51 0 48 21.49 48 48zm96 58v12a6 6 0 0 1-6 6h-18v6a6 6 0 0 1-6 6h-42V88h42a6 6 0 0 1 6 6v6h18a6 6 0 0 1 6 6zm0 96v12a6 6 0 0 1-6 6h-18v6a6 6 0 0 1-6 6h-42v-48h42a6 6 0 0 1 6 6v6h18a6 6 0 0 1 6 6zm0 96v12a6 6 0 0 1-6 6h-18v6a6 6 0 0 1-6 6h-42v-48h42a6 6 0 0 1 6 6v6h18a6 6 0 0 1 6 6zm0 96v12a6 6 0 0 1-6 6h-18v6a6 6 0 0 1-6 6h-42v-48h42a6 6 0 0 1 6 6v6h18a6 6 0 0 1 6 6zM30 376h42v48H30a6 6 0 0 1-6-6v-6H6a6 6 0 0 1-6-6v-12a6 6 0 0 1 6-6h18v-6a6 6 0 0 1 6-6zm0-96h42v48H30a6 6 0 0 1-6-6v-6H6a6 6 0 0 1-6-6v-12a6 6 0 0 1 6-6h18v-6a6 6 0 0 1 6-6zm0-96h42v48H30a6 6 0 0 1-6-6v-6H6a6 6 0 0 1-6-6v-12a6 6 0 0 1 6-6h18v-6a6 6 0 0 1 6-6zm0-96h42v48H30a6 6 0 0 1-6-6v-6H6a6 6 0 0 1-6-6v-12a6 6 0 0 1 6-6h18v-6a6 6 0 0 1 6-6z"></path></svg></span><h3>Sensor dan IoT</h3><p>Magnetometer, sensor Hall, RFID, dan NFC menghasilkan aliran data dari efek magnetik.</p></article>
+          <article class="card"><span class="card__icon"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M634.91 154.88C457.74-8.99 182.19-8.93 5.09 154.88c-6.66 6.16-6.79 16.59-.35 22.98l34.24 33.97c6.14 6.1 16.02 6.23 22.4.38 145.92-133.68 371.3-133.71 517.25 0 6.38 5.85 16.26 5.71 22.4-.38l34.24-33.97c6.43-6.39 6.3-16.82-.36-22.98zM320 352c-35.35 0-64 28.65-64 64s28.65 64 64 64 64-28.65 64-64-28.65-64-64-64zm202.67-83.59c-115.26-101.93-290.21-101.82-405.34 0-6.9 6.1-7.12 16.69-.57 23.15l34.44 33.99c6 5.92 15.66 6.32 22.05.8 83.95-72.57 209.74-72.41 293.49 0 6.39 5.52 16.05 5.13 22.05-.8l34.44-33.99c6.56-6.46 6.33-17.06-.56-23.15z"></path></svg></span><h3>Sinyal nirkabel</h3><p>Kekuatan sinyal Wi-Fi atau 5G bisa dipakai untuk menentukan posisi di dalam ruangan.</p></article>
+          <article class="card"><span class="card__icon"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M208 0c-29.9 0-54.7 20.5-61.8 48.2-.8 0-1.4-.2-2.2-.2-35.3 0-64 28.7-64 64 0 4.8.6 9.5 1.7 14C52.5 138 32 166.6 32 200c0 12.6 3.2 24.3 8.3 34.9C16.3 248.7 0 274.3 0 304c0 33.3 20.4 61.9 49.4 73.9-.9 4.6-1.4 9.3-1.4 14.1 0 39.8 32.2 72 72 72 4.1 0 8.1-.5 12-1.2 9.6 28.5 36.2 49.2 68 49.2 39.8 0 72-32.2 72-72V64c0-35.3-28.7-64-64-64zm368 304c0-29.7-16.3-55.3-40.3-69.1 5.2-10.6 8.3-22.3 8.3-34.9 0-33.4-20.5-62-49.7-74 1-4.5 1.7-9.2 1.7-14 0-35.3-28.7-64-64-64-.8 0-1.5.2-2.2.2C422.7 20.5 397.9 0 368 0c-35.3 0-64 28.6-64 64v376c0 39.8 32.2 72 72 72 31.8 0 58.4-20.7 68-49.2 3.9.7 7.9 1.2 12 1.2 39.8 0 72-32.2 72-72 0-4.8-.5-9.5-1.4-14.1 29-12 49.4-40.6 49.4-73.9z"></path></svg></span><h3>Citra medis</h3><p>MRI memakai medan magnet kuat dan gelombang radio untuk membentuk citra.</p></article>
+          <article class="card"><span class="card__icon"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M268.3 32.7C115.4 42.9 0 176.9 0 330.2V464c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C64 186.8 180.9 80.3 317.5 97.9 430.4 112.4 512 214 512 327.8V464c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320c0-165.3-140-298.6-307.7-287.3zm-5.6 96.9C166 142 96 229.1 96 326.7V464c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320c0-74.8 64.5-134.8 140.8-127.4 66.5 6.5 115.2 66.2 115.2 133.1V464c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320c0-114.2-100.2-205.4-217.3-190.4zm6.2 96.3c-45.6 8.9-76.9 51.5-76.9 97.9V464c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320c0-17.6 14.3-32 32-32s32 14.4 32 32v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320c0-59.2-53.8-106-115.1-94.1z"></path></svg></span><h3>Spektroskopi</h3><p>Spektrum cahaya menjadi fitur untuk mengklasifikasikan material.</p></article>
+          <article class="card"><span class="card__icon"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"></path></svg></span><h3>Transformasi Fourier</h3><p>Sinyal diubah dari domain waktu ke domain frekuensi, konsep yang berakar dari c = λf.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. JEJAK PENEMUAN (ulasan) -->
+    <section class="scene" id="jejak" data-title="Penemuan" aria-labelledby="h-jejak">
+      <div class="scene__inner">
+        <header class="scene__head reveal">
+          <p class="eyebrow">Jejak penemuan</p>
+          <h2 class="h2" id="h-jejak">Empat orang, <em>satu rantai</em></h2>
+        </header>
+        <div class="carousel reveal" data-carousel>
+          <div class="carousel__track" data-carousel-track tabindex="0" role="region" aria-label="Daftar penemuan, geser ke kanan untuk melihat berikutnya"></div>
+          <div class="carousel__bar">
+            <button type="button" class="icon-btn" data-carousel-prev aria-label="Sebelumnya">‹</button>
+            <div class="progress" aria-hidden="true"><div class="progress__fill" data-carousel-progress></div></div>
+            <button type="button" class="icon-btn" data-carousel-next aria-label="Berikutnya">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section class="scene scene--alt" id="faq" data-title="FAQ" aria-labelledby="h-faq">
+      <div class="scene__inner faq">
+        <header class="reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="h2" id="h-faq">Pertanyaan yang sering <em>muncul</em></h2>
+          <p class="lead">Jawaban singkat untuk hal-hal yang biasanya bikin bingung di bab ini.</p>
+        </header>
+        <div class="accordion reveal">
+          <details name="faq"><summary>Kenapa magnet tidak bisa dipotong jadi satu kutub?</summary><p>Setiap potongan magnet tetap punya kutub N dan S. Persamaan Gauss untuk magnet mengatakan hal yang sama: tidak ada monopol, dan garis medan magnet selalu tertutup.</p></details>
+          <details name="faq"><summary>Kenapa gaya Lorentz tidak melakukan usaha?</summary><p>Gayanya selalu tegak lurus terhadap kecepatan, jadi hanya mengubah arah gerak muatan, bukan lajunya.</p></details>
+          <details name="faq"><summary>Kenapa listrik jarak jauh memakai tegangan tinggi?</summary><p>Pada daya yang sama, tegangan tinggi berarti arus kecil, sehingga rugi daya I²R di kabel kecil. Transformator menaikkan dan menurunkan tegangan, tetapi hanya bekerja pada arus bolak-balik.</p></details>
+          <details name="faq"><summary>Apakah suara termasuk gelombang elektromagnetik?</summary><p>Bukan. Suara adalah gelombang mekanik yang butuh medium, sedangkan gelombang elektromagnetik bisa merambat di vakum.</p></details>
+          <details name="faq"><summary>Kenapa sinar-X berbahaya, tetapi Wi-Fi tidak?</summary><p>Sinar-X dan gamma termasuk radiasi pengion: energi fotonnya cukup untuk merusak molekul. Gelombang radio dan mikro berenergi jauh lebih rendah.</p></details>
+          <details name="faq"><summary>Apa hubungan Fourier dengan bab ini?</summary><p>Transformasi Fourier mengubah sinyal dari domain waktu ke domain frekuensi. Gagasan frekuensi itu berakar dari hubungan c = λf.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. PENUTUP + FOOTER -->
+    <section class="scene scene--end" id="penutup" data-title="Penutup" aria-labelledby="h-penutup">
+      <div class="scene__inner">
+        <div class="cta-card reveal">
+          <img src="assets/img/penutup-galaksi.jpg" alt="" width="960" height="420" loading="lazy" decoding="async">
+          <p class="eyebrow">Kesimpulan</p>
+          <h2 class="h2" id="h-penutup">Satu alur, <em>tujuh langkah</em></h2>
+          <ol class="flow">
+            <li><b>Oersted</b> arus menghasilkan magnet</li>
+            <li><b>Lorentz</b> magnet menggerakkan muatan</li>
+            <li><b>Faraday, Lenz</b> magnet berubah menghasilkan listrik</li>
+            <li><b>Maxwell</b> semuanya menyatu</li>
+            <li><b>Gelombang EM</b> c = λf</li>
+            <li><b>Spektrum</b> radio sampai gamma</li>
+            <li><b>Sains data</b> sumber data</li>
+          </ol>
+          <div class="actions">
+            <a class="btn btn--primary" href="#beranda">Kembali ke awal</a>
+            <a class="btn btn--outline" href="#spektrum">Coba kalkulator lagi</a>
+          </div>
+        </div>
+      </div>
+      <footer class="site-footer">
+        <div>
+          <a class="brand" href="#beranda" aria-label="Elektromagnetisme, kembali ke awal"><span>Elektromagnetisme</span></a>
+          <p class="muted">Tugas kelompok Fisika Dasar, program studi Sains Data.</p>
+          <p class="group-name">Kelompok: Medan Magnet dan Gelombang Elektromagnetik</p>
+          <ul class="members">
+            <li>Putra Izhar Gumilar <span class="muted">2674110039</span></li>
+            <li>Athifah Syahzinan <span class="muted">2074110056</span></li>
+          </ul>
+        </div>
+        <nav aria-label="Bagian di footer"><h2>Bagian</h2><ul><li><a href="#topik">Topik</a></li><li><a href="#maxwell">Maxwell</a></li><li><a href="#gelombang">Gelombang</a></li><li><a href="#spektrum">Spektrum</a></li></ul></nav>
+        <nav aria-label="Pelajari lebih lanjut"><h2>Lanjut</h2><ul><li><a href="#sains-data">Sains data</a></li><li><a href="#jejak">Penemuan</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
+        <div><h2>Sumber</h2><ul><li><a href="CREDITS.md">Kredit foto</a></li><li class="muted">Navigasi: panah atas/bawah, F untuk layar penuh</li></ul></div>
+      </footer>
+    </section>
+  </main>
+
+  <div class="scene-controls" role="group" aria-label="Pindah bagian">
+    <button type="button" class="icon-btn" id="scene-prev" aria-label="Bagian sebelumnya"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg></button>
+    <span class="counter" id="scene-counter" aria-hidden="true">01 / 09</span>
+    <button type="button" class="icon-btn" id="scene-next" aria-label="Bagian berikutnya"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" aria-hidden="true" focusable="false" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"></path></svg></button>
+  </div>
+  <p class="toast" id="toast" role="status" hidden></p>
+</body>
+</html>
